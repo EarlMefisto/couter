@@ -3,10 +3,9 @@
 }
 
 .stop {
-  color: rgba(194, 40, 40, 0.939);
+  color: rgba(11, 31, 103, 0.964);
 }
 
-
-
-
-
+button:disabled {
+  opacity: 0.6;
+}
