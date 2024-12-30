@@ -21,8 +21,10 @@ const StyledButton = styled.button`
   width: 40%;
   height: 100%;
 
-  color: rgba(255, 255, 255, 0.98);
-  background-color: rgba(237, 84, 13, 0.971);
+  cursor: pointer;
+
+  color: rgba(255, 255, 255, 0.999);
+  background-color: rgba(237, 200, 13, 0.999);
 
   font-family: "Roboto", sans-serif;
   font-weight: 700;

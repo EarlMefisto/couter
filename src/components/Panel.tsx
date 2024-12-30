@@ -27,8 +27,8 @@ const StyledPanel = styled.div`
   width: 100%;
   height: 60%;
 
-  color: rgba(255, 255, 255, 0.99);
-  background-color: rgba(237, 84, 13, 0.99);
+  color: rgba(255, 255, 255, 0.999);
+  background-color: rgba(237, 200, 13, 0.999);
 
   font-family: "Roboto", sans-serif;
   font-weight: 700;
