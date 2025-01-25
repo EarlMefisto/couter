@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useState } from "react";
-
 import { Container } from "../../components/Container";
 import { FlexWrapper } from "../../components/FlexWrapper";
 import { Panel } from "../../components/Panel";
@@ -8,6 +7,8 @@ import { Button } from "../../components/Button";
 
 export const SecondPanel = () => {
   const [counter, setCounter] = useState(0);
+  
+
   const minNumber = 0;
   const maxNumber = 5;
 
@@ -21,9 +22,11 @@ export const SecondPanel = () => {
     setCounter(0);
   };
 
+  
+
   return (
     <Container>
-      <FlexWrapper justify="center">
+      <FlexWrapper justify="space-around">
         <StyledSecondPanel>
           <Panel count={counter} maxCount={maxNumber} />
           <StyledButtonBox>
@@ -32,11 +35,7 @@ export const SecondPanel = () => {
               onClickHandler={onClickIncHandler}
               isDisabled={counter >= maxNumber}
             />
-            <Button
-              title="Reset"
-              onClickHandler={onClickResetHandler}
-              isDisabled={counter === 0}
-            />
+            <Button title="Reset" onClickHandler={onClickResetHandler} />
           </StyledButtonBox>
         </StyledSecondPanel>
       </FlexWrapper>
@@ -55,7 +54,7 @@ const StyledSecondPanel = styled.section`
   height: 200px;
 
   padding: 20px;
-  margin: 10px 0;
+  margin: 40px 0;
 `;
 
 const StyledButtonBox = styled.button`
@@ -72,4 +71,8 @@ const StyledButtonBox = styled.button`
   height: 40%;
 
   padding: 15px;
+`;
+
+const StyledLabel = styled.label`
+  color: white;
 `;

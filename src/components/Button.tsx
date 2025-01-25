@@ -3,7 +3,7 @@ import styled from "styled-components";
 export type ButtonPropsType = {
   title: string;
   onClickHandler?: () => void;
-  isDisabled?: boolean;
+  isDisabled?: boolean; 
 };
 
 export const Button = (props: ButtonPropsType) => {
