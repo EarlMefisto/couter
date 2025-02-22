@@ -18,8 +18,8 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 5px;
 
-  width: 40%;
-  height: 100%;
+  width: 80px;
+  height: 40px;
 
   cursor: pointer;
 

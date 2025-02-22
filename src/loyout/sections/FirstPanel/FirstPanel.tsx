@@ -1,15 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
-
-import { Container } from "../../components/Container";
-import { FlexWrapper } from "../../components/FlexWrapper";
-import { Panel } from "../../components/Panel";
-import { Button } from "../../components/Button";
+import { Container } from "../../../components/Container";
+import { FlexWrapper } from "../../../components/FlexWrapper";
+import { Panel } from "../../../components/Panel/Panel";
+import { Button } from "../../../components/Button";
 
 export const FirstPanel = () => {
   const [counter, setCounter] = useState(0);
-  const minNumber = 0;
-  const maxNumber = 5;
+
+  const maxValue = 5;
 
   const onClickIncHandler = () => {
     if (counter < 5) {
@@ -25,12 +24,12 @@ export const FirstPanel = () => {
     <Container>
       <FlexWrapper justify="center">
         <StyledFirstPanel>
-          <Panel count={counter} maxCount={maxNumber} />
+          <Panel count={counter} />
           <StyledButtonBox>
             <Button
               title="Inc"
               onClickHandler={onClickIncHandler}
-              isDisabled={counter >= maxNumber}
+              isDisabled={counter >= maxValue}
             />
             <Button
               title="Reset"

@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Container } from "../../../components/Container";
+import { FlexWrapper } from "../../../components/FlexWrapper";
+import { Panel } from "../../../components/Panel/Panel";
+import { Button } from "../../../components/Button";
 
-import { Container } from "../../components/Container";
-import { FlexWrapper } from "../../components/FlexWrapper";
-import { Panel } from "../../components/Panel";
-import { Button } from "../../components/Button";
-
-export const ThirdPanel = () => {
+export const SecondPanel = () => {
   const [counter, setCounter] = useState(0);
-  const minNumber = 0;
+  const [value, setValue] = useState(0);
+
   const maxNumber = 5;
 
   const onClickIncHandler = () => {
@@ -21,22 +21,31 @@ export const ThirdPanel = () => {
     setCounter(0);
   };
 
+  useEffect(() => {
+    let valueAsString = localStorage.getItem("counterValue");
+    if (valueAsString) {
+      let newValue = JSON.parse(valueAsString);
+      setValue(newValue);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("counterValue", JSON.stringify(value));
+  }, [value]);
+
   return (
     <Container>
-      <FlexWrapper justify="center">
+      <FlexWrapper justify="space-around">
         <StyledSecondPanel>
-          <Panel count={counter} maxCount={maxNumber} />
+          <Panel count={counter} />
           <StyledButtonBox>
             <Button
               title="Inc"
               onClickHandler={onClickIncHandler}
               isDisabled={counter >= maxNumber}
             />
-            <Button
-              title="Reset"
-              onClickHandler={onClickResetHandler}
-              isDisabled={counter === 0}
-            />
+            <Button title="Reset" onClickHandler={onClickResetHandler} />
+            <Button title="Set" />
           </StyledButtonBox>
         </StyledSecondPanel>
       </FlexWrapper>
@@ -55,7 +64,7 @@ const StyledSecondPanel = styled.section`
   height: 200px;
 
   padding: 20px;
-  margin: 10px 0;
+  margin: 40px 0;
 `;
 
 const StyledButtonBox = styled.button`

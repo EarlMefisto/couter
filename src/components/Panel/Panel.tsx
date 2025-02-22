@@ -2,15 +2,12 @@ import styled from "styled-components";
 
 export type PanelPropsType = {
   count: number;
-  maxCount: number;
 };
 
-export const Panel = (props: PanelPropsType) => {
+export const Panel = ({ count }: PanelPropsType) => {
   return (
     <StyledPanel>
-      <span className={props.count >= props.maxCount ? "stop" : ""}>
-        {props.count}
-      </span>
+      <span>{count}</span>
     </StyledPanel>
   );
 };
