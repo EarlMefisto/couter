@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { Container } from "../../../components/Container";
 import { FlexWrapper } from "../../../components/FlexWrapper";
-import { Panel } from "../../../components/Panel/Panel";
+import { Panel } from "../../../components/Panel";
 import { Button } from "../../../components/Button";
 import { Input } from "../../../components/Input";
-import styles from "./ThirdPanel.module.css";
 
 export const ThirdPanel = () => {
   const [counter, setCounter] = useState(0);
@@ -52,7 +51,7 @@ export const ThirdPanel = () => {
   return (
     <Container>
       <FlexWrapper justify="space-around">
-        <StyledSecondPanel>
+        <StyledThirdPanel>
           <StyledInputBox>
             <Input
               title="Max value:"
@@ -72,12 +71,9 @@ export const ThirdPanel = () => {
               isDisabled={startValue <= 0}
             />
           </StyledButtonBox>
-        </StyledSecondPanel>
-        <StyledSecondPanel>
-          <Panel
-            count={counter}
-          />
-
+        </StyledThirdPanel>
+        <StyledThirdPanel>
+          <Panel count={counter} />
           <StyledButtonBox>
             <Button
               title="Inc"
@@ -90,13 +86,13 @@ export const ThirdPanel = () => {
               isDisabled={counter <= startValue}
             />
           </StyledButtonBox>
-        </StyledSecondPanel>
+        </StyledThirdPanel>
       </FlexWrapper>
     </Container>
   );
 };
 
-const StyledSecondPanel = styled.section`
+const StyledThirdPanel = styled.section`
   display: flex;
   flex-direction: column;
 

@@ -2,29 +2,34 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Container } from "../../../components/Container";
 import { FlexWrapper } from "../../../components/FlexWrapper";
-import { Panel } from "../../../components/Panel/Panel";
+import { Panel } from "../../../components/Panel";
 import { Button } from "../../../components/Button";
 
 export const FirstPanel = () => {
   const [counter, setCounter] = useState(0);
+  const [error, setError] = useState("");
 
   const maxValue = 5;
 
   const onClickIncHandler = () => {
-    if (counter < 5) {
+    if (counter < maxValue) {
       setCounter(counter + 1);
+      setError("");
+    } else {
+      setError("Counter cannot exceed 5!");
     }
   };
 
   const onClickResetHandler = () => {
     setCounter(0);
+    setError("");
   };
 
   return (
     <Container>
       <FlexWrapper justify="center">
         <StyledFirstPanel>
-          <Panel count={counter} />
+          <Panel count={counter} error={error}/>
           <StyledButtonBox>
             <Button
               title="Inc"

@@ -1,18 +1,19 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Container } from "../../../components/Container";
 import { FlexWrapper } from "../../../components/FlexWrapper";
-import { Panel } from "../../../components/Panel/Panel";
+import { Panel } from "../../../components/Panel";
 import { Button } from "../../../components/Button";
+import { Input } from "../../../components/Input";
 
 export const SecondPanel = () => {
   const [counter, setCounter] = useState(0);
-  const [value, setValue] = useState(0);
-
-  const maxNumber = 5;
+  const [settingsPanel, setSettingsPanel] = useState(false);
+  const [maxValue, setMaxValue] = useState(5);
+  const [startValue, setStartValue] = useState(0);
 
   const onClickIncHandler = () => {
-    if (counter < 5) {
+    if (counter < maxValue) {
       setCounter(counter + 1);
     }
   };
@@ -21,32 +22,62 @@ export const SecondPanel = () => {
     setCounter(0);
   };
 
-  useEffect(() => {
-    let valueAsString = localStorage.getItem("counterValue");
-    if (valueAsString) {
-      let newValue = JSON.parse(valueAsString);
-      setValue(newValue);
-    }
-  }, []);
+  const onChangeMaxValueHandler = () => {
+    setMaxValue(maxValue + 1);
+  };
 
-  useEffect(() => {
-    localStorage.setItem("counterValue", JSON.stringify(value));
-  }, [value]);
+  const onChangeStartValueHandler = () => {
+    setStartValue(startValue + 1);
+  };
+
+  const onClickSetHandler = () => {
+    setSettingsPanel(false);
+    setCounter(startValue);
+  };
 
   return (
     <Container>
       <FlexWrapper justify="space-around">
         <StyledSecondPanel>
-          <Panel count={counter} />
-          <StyledButtonBox>
-            <Button
-              title="Inc"
-              onClickHandler={onClickIncHandler}
-              isDisabled={counter >= maxNumber}
-            />
-            <Button title="Reset" onClickHandler={onClickResetHandler} />
-            <Button title="Set" />
-          </StyledButtonBox>
+          {settingsPanel ? (
+            <>
+              <StyledInputBox>
+                <Input
+                  title="Max value:"
+                  value={maxValue}
+                  onChange={onChangeMaxValueHandler}
+                />
+                <Input
+                  title="Start value:"
+                  value={startValue}
+                  onChange={onChangeStartValueHandler}
+                />
+              </StyledInputBox>
+              <StyledButtonBox>
+                <Button
+                  title="Set"
+                  onClickHandler={onClickSetHandler}
+                  isDisabled={startValue <= 0}
+                />
+              </StyledButtonBox>
+            </>
+          ) : (
+            <>
+              <Panel count={counter} />
+              <StyledButtonBox>
+                <Button
+                  title="Inc"
+                  onClickHandler={onClickIncHandler}
+                  isDisabled={counter >= maxValue}
+                />
+                <Button title="Reset" onClickHandler={onClickResetHandler} />
+                <Button
+                  title="Set"
+                  onClickHandler={() => setSettingsPanel(true)}
+                />
+              </StyledButtonBox>
+            </>
+          )}
         </StyledSecondPanel>
       </FlexWrapper>
     </Container>
@@ -81,4 +112,19 @@ const StyledButtonBox = styled.button`
   height: 40%;
 
   padding: 15px;
+`;
+
+const StyledInputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  border: 3px solid rgba(237, 200, 13, 0.999);
+  border-radius: 7px;
+
+  padding: 10px;
+  margin-bottom: 20px;
+
+  color: rgba(255, 255, 255, 0.999);
+  background-color: rgba(237, 200, 13, 0.999);
+  font-weight: 700;
 `;

@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 export type PanelPropsType = {
   count: number;
+  error?: string;
 };
 
-export const Panel = ({ count }: PanelPropsType) => {
+export const Panel = ({ count, error }: PanelPropsType) => {
   return (
     <StyledPanel>
       <span>{count}</span>
+      {error && <StyledError>{error}</StyledError>}
     </StyledPanel>
   );
 };
@@ -31,4 +33,10 @@ const StyledPanel = styled.div`
   font-weight: 700;
   font-style: normal;
   font-size: 50px;
+`;
+
+const StyledError = styled.div`
+  color: red;
+  font-size: 20px;
+  margin-top: 10px;
 `;
