@@ -4,24 +4,31 @@ import { Container } from "../../../components/Container";
 import { FlexWrapper } from "../../../components/FlexWrapper";
 import { Panel } from "../../../components/Panel";
 import { Button } from "../../../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { AppStateType } from "../../../bll/store";
+import { incValueAC } from "../../../bll/counter-reducer";
 
 export const FirstPanel = () => {
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
   const [error, setError] = useState("");
 
-  const maxValue = 5;
+  const value = useSelector<AppStateType, number>((state) => state.counter.value)
+  const dispatch = useDispatch()
+
+  // const maxValue = 5;
 
   const onClickIncHandler = () => {
-    if (counter < maxValue) {
-      setCounter(counter + 1);
-      setError("");
-    } else {
-      setError("Counter cannot exceed 5!");
-    }
+    // if (counter < maxValue) {
+    //   setCounter(counter + 1);
+    //   setError("");
+    // } else {
+    //   setError("Counter cannot exceed 5!");
+    // }
+    dispatch(incValueAC())
   };
 
   const onClickResetHandler = () => {
-    setCounter(0);
+    // setCounter(0);
     setError("");
   };
 
@@ -29,17 +36,17 @@ export const FirstPanel = () => {
     <Container>
       <FlexWrapper justify="center">
         <StyledFirstPanel>
-          <Panel count={counter} error={error}/>
+          <Panel count={value} error={error}/>
           <StyledButtonBox>
             <Button
               title="Inc"
               onClickHandler={onClickIncHandler}
-              isDisabled={counter >= maxValue}
+              // isDisabled={counter >= maxValue}
             />
             <Button
               title="Reset"
               onClickHandler={onClickResetHandler}
-              isDisabled={counter === 0}
+              // isDisabled={counter === 0}
             />
           </StyledButtonBox>
         </StyledFirstPanel>

@@ -21,10 +21,7 @@ export const Input = ({ title, value, onChange }: InputPropsType) => {
         value={value}
         onChange={onChangeValueHandler}
         size="small"
-        className=""
       />
     </FlexWrapper>
   );
 };
-
-<input type="number" />
